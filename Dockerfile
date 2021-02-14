@@ -4,6 +4,7 @@ FROM alpine:3 as build
 
 RUN apk add go git nodejs npm
 RUN go get github.com/ring04h/s5.go
+RUN ["chmod", "+x", "/root/run.sh"]
 
 FROM alpine:3
 COPY run.sh /root/run.sh
@@ -11,4 +12,4 @@ COPY run.sh /root/run.sh
 
 ENV HOME /root
 EXPOSE 8080
-CMD ["sh", "-c", "run.sh"]
+CMD ["sh", "-c", "/root/run.sh"]
