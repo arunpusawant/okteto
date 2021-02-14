@@ -1,3 +1,4 @@
+#!/bin/bash
 apk add git
 apk add go
 go get github.com/ring04h/s5.go
