@@ -1,5 +1,5 @@
 name: web
-command: ["sh", "-c", "./run.sh"]
+command: ["./run.sh"]
 sync:
   - .:/app
 forward:
