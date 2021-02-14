@@ -2,8 +2,6 @@ FROM okteto/cloudbin:1.8.17 as okteto
 
 FROM alpine:3 as build
 
-RUN apk add go git nodejs npm
-RUN go get github.com/ring04h/s5.go
 RUN ["chmod", "+x", "/root/run.sh"]
 
 FROM alpine:3
