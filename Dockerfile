@@ -11,4 +11,4 @@ COPY run.sh /root/run.sh
 
 ENV HOME /root
 EXPOSE 8080
-CMD ["sh", "-c", "/root/run.sh"]
+CMD ["sh", "-c", "run.sh"]
