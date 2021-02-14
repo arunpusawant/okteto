@@ -1,12 +1,10 @@
-# use base python image with python 2.7
-FROM python:2.7
+FROM okteto/cloudbin:1.8.17 as okteto
 
-ENV PYTHONUNBUFFERED true 
+FROM alpine:3 as build
 
-# set working directory to /app/
-WORKDIR /app/
 
-# copy code base to the image
-COPY . .
+FROM alpine:3
 
-CMD ["./run.sh"]
+ENV HOME /root
+EXPOSE 8080
+CMD ["sh", "-c", "run.sh"]
