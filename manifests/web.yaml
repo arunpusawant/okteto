@@ -1,67 +1,108 @@
+# metadata:
+#   annotations:
+#     deployment.kubernetes.io/revision: "1"
+#     dev.okteto.com/auto-create: push
+#     dev.okteto.com/last-updated: 2021-02-20T06:48:45
+#     dev.okteto.com/path: okteto.yml
+#     dev.okteto.com/repository: https://github.com/arunpusawant/okteto
+#   creationTimestamp: "2021-02-20T06:48:44Z"
+#   generation: 3
+#   labels:
+#     dev.okteto.com/deployed-by: 715f9aa8-025f-4b0d-baf0-743400240c3e
+#   name: web
+#   namespace: arunpusawant
+#   resourceVersion: "322459066"
+#   selfLink: /apis/apps/v1/namespaces/arunpusawant/deployments/web
+#   uid: d3e97265-8e6b-4779-9a6d-c00dbb169d97
+# spec:
+#   progressDeadlineSeconds: 600
+#   replicas: 1
+#   revisionHistoryLimit: 10
+#   selector:
+#     matchLabels:
+#       app: web
+#   strategy:
+#     type: Recreate
+#   template:
+#     metadata:
+#       annotations:
+#         dev.okteto.com/last-built: 2021-02-20T06:48:44
+#       creationTimestamp: null
+#       labels:
+#         app: web
+#     spec:
+#       containers:
+#       - image: registry.cloud.okteto.net/arunpusawant/web:okteto
+#         imagePullPolicy: Always
+#         name: dev
+#         resources: {}
+#         terminationMessagePath: /dev/termination-log
+#         terminationMessagePolicy: File
+#       dnsPolicy: ClusterFirst
+#       restartPolicy: Always
+#       schedulerName: default-scheduler
+#       securityContext: {}
+#       terminationGracePeriodSeconds: 0
+# status:
+#   availableReplicas: 1
+#   conditions:
+#   - lastTransitionTime: "2021-02-20T06:48:46Z"
+#     lastUpdateTime: "2021-02-20T06:48:46Z"
+#     message: Deployment has minimum availability.
+#     reason: MinimumReplicasAvailable
+#     status: "True"
+#     type: Available
+#   - lastTransitionTime: "2021-02-20T06:48:44Z"
+#     lastUpdateTime: "2021-02-20T06:48:46Z"
+#     message: ReplicaSet "web-6d9cb84595" has successfully progressed.
+#     reason: NewReplicaSetAvailable
+#     status: "True"
+#     type: Progressing
+#   observedGeneration: 3
+#   readyReplicas: 1
+#   replicas: 1
+#   updatedReplicas: 1
+
+# apiVersion: v1
+# kind: Service
+# metadata:
+#   name: web
+#   annotations:
+#     dev.okteto.com/auto-ingress: "true"
+# spec:
+#   type: ClusterIP  
+#   ports:
+#   - name: web
+#     port: 3000
+#   selector:
+#     app: web
+
+
+  
+apiVersion: apps/v1
+kind: Deployment
 metadata:
-  annotations:
-    deployment.kubernetes.io/revision: "1"
-    dev.okteto.com/auto-create: push
-    dev.okteto.com/last-updated: 2021-02-20T06:48:45
-    dev.okteto.com/path: okteto.yml
-    dev.okteto.com/repository: https://github.com/arunpusawant/okteto
-  creationTimestamp: "2021-02-20T06:48:44Z"
-  generation: 3
-  labels:
-    dev.okteto.com/deployed-by: 715f9aa8-025f-4b0d-baf0-743400240c3e
   name: web
-  namespace: arunpusawant
-  resourceVersion: "322459066"
-  selfLink: /apis/apps/v1/namespaces/arunpusawant/deployments/web
-  uid: d3e97265-8e6b-4779-9a6d-c00dbb169d97
 spec:
-  progressDeadlineSeconds: 600
   replicas: 1
-  revisionHistoryLimit: 10
   selector:
     matchLabels:
       app: web
-  strategy:
-    type: Recreate
   template:
     metadata:
-      annotations:
-        dev.okteto.com/last-built: 2021-02-20T06:48:44
-      creationTimestamp: null
       labels:
         app: web
     spec:
-      containers:
-      - image: registry.cloud.okteto.net/arunpusawant/web:okteto
-        imagePullPolicy: Always
-        name: dev
-        resources: {}
-        terminationMessagePath: /dev/termination-log
-        terminationMessagePolicy: File
-      dnsPolicy: ClusterFirst
-      restartPolicy: Always
-      schedulerName: default-scheduler
-      securityContext: {}
       terminationGracePeriodSeconds: 0
-status:
-  availableReplicas: 1
-  conditions:
-  - lastTransitionTime: "2021-02-20T06:48:46Z"
-    lastUpdateTime: "2021-02-20T06:48:46Z"
-    message: Deployment has minimum availability.
-    reason: MinimumReplicasAvailable
-    status: "True"
-    type: Available
-  - lastTransitionTime: "2021-02-20T06:48:44Z"
-    lastUpdateTime: "2021-02-20T06:48:46Z"
-    message: ReplicaSet "web-6d9cb84595" has successfully progressed.
-    reason: NewReplicaSetAvailable
-    status: "True"
-    type: Progressing
-  observedGeneration: 3
-  readyReplicas: 1
-  replicas: 1
-  updatedReplicas: 1
+      containers:
+      - name: web
+        image: registry.cloud.okteto.net/arunpusawant/web:okteto
+        resources:
+          limits:
+            memory: "512Mi"
+            cpu: "500m"        
+
+---
 
 apiVersion: v1
 kind: Service
