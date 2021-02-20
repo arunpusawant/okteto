@@ -15,7 +15,6 @@ spec:
       terminationGracePeriodSeconds: 0
       containers:
       - name: web
-        image: arunpusawant/okteto:main
         command: ["./run.sh"]
         resources:
           limits:
