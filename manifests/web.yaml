@@ -31,8 +31,5 @@ metadata:
     dev.okteto.com/auto-ingress: "true"
 spec:
   type: ClusterIP  
-  ports:
-  - name: web
-    port: 3000
   selector:
     app: web
