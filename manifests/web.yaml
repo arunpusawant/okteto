@@ -18,7 +18,7 @@ spec:
         image: registry.cloud.okteto.net/arunpusawant/web:okteto
         resources:
           limits:
-            memory: "4Gi"
+            memory: "64Mi"
             cpu: "2"        
 
 ---
