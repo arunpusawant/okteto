@@ -15,6 +15,7 @@ spec:
       terminationGracePeriodSeconds: 0
       containers:
       - name: web
+        image: okteto/django:latest
         command: ["./run.sh"]
         resources:
           limits:
