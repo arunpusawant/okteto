@@ -1,6 +1,12 @@
   
 icon: https://github.com/okteto/math/raw/master/icon.png
-deploy:
-  - kubectl apply -f manifests
 devs:
   - okteto.yml
+resources:
+  requests:
+    memory: "2Gi"
+    cpu: "1"
+  limits:
+    requests:
+    memory: "2Gi"
+    cpu: "1"
